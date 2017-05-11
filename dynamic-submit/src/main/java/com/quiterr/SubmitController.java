@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class SubmitController {
     @RequestMapping(value = "/topology/create", method = RequestMethod.POST)
-    private boolean create(@RequestParam("topologyName") String topologyName){
+    private boolean create(@RequestBody String topologyName){
         Config conf = new Config();
         conf.setDebug(true);
         TopologyBuilder builder = new TopologyBuilder();
