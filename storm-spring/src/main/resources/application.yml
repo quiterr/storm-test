@@ -1,0 +1,24 @@
+spring:
+  redis:
+    database: 1  # Redis数据库索引（默认为0）
+    host: 192.168.54.7 # Redis服务器地址
+    port: 6379  # Redis服务器连接端口
+    password:   # Redis服务器连接密码（默认为空）
+    pool:
+      max-active: 8  # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1  # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 8  # 连接池中的最大空闲连接
+      min-idle: 2  # 连接池中的最小空闲连接
+    timeout: 3000  # 连接超时时间（毫秒)
+#    sentinel:
+#      master: tokenmaster
+#      nodes: 192.168.54.7:20000,192.168.54.8:20000
+    cluster:
+      nodes: 172.19.3.135:6379,172.19.3.136:6379,172.19.3.137:6379
+      max-redirects: 5
+
+logging:
+  level:
+    root: error
+    com:
+      quiterr: info
