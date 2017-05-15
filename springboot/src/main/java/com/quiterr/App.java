@@ -2,6 +2,7 @@ package com.quiterr;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
+import org.apache.storm.StormSubmitter;
 import org.apache.storm.testing.TestWordSpout;
 import org.apache.storm.topology.TopologyBuilder;
 
@@ -15,11 +16,17 @@ public class App {
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("word", new TestWordSpout(), 1);
         builder.setBolt("exclaim", new ExclamationBolt(), 1).shuffleGrouping("word");
+//        try {
+//            LocalCluster cluster = new LocalCluster();
+//            cluster.submitTopology("test", conf,builder.createTopology());
+//            Thread.sleep(60 * 1000);
+//            cluster.shutdown();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         try {
-            LocalCluster cluster = new LocalCluster();
-            cluster.submitTopology("test", conf,builder.createTopology());
-            Thread.sleep(60 * 1000);
-            cluster.shutdown();
+            StormSubmitter.submitTopology("test", conf,
+                    builder.createTopology());
         } catch (Exception e) {
             e.printStackTrace();
         }
