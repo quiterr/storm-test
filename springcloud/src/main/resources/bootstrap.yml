@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://192.168.54.15:8761/eureka/,http://192.168.54.16:8761/eureka/,http://192.168.54.17:8761/eureka/,http://192.168.54.19:8761/eureka/
+  instance:
+    prefer-ip-address: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+logging:
+  level:
+    root: error
+    com:
+      quiterr: info
